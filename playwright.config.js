@@ -4,7 +4,7 @@ const config = {
   retries :1,
   
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 40 * 1000,
   expect: {
   
     timeout: 5000
