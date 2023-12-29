@@ -503,7 +503,7 @@ test('drop and drop inside frame using mouse', async ({ page }) => {
     }
 })
 
-test.only('drag and drop inside frame using drapTo method', async ({ page }) => {
+test('drag and drop inside frame using drapTo method', async ({ page }) => {
 
     await page.goto('https://jqueryui.com/droppable/')
     const frame = page.frameLocator('.demo-frame')
