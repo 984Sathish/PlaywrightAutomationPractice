@@ -20,8 +20,9 @@ const config = {
     {
       name: 'Chrome',
       use: {
+        baseURL: 'https://admin-demo.nopcommerce.com/Admin/',
         browserName: 'chromium',
-        headless: true,
+        headless: false,
         screenshot: 'on',//off,on or only-on-failure
         video: 'retain-on-failure',//off,on,retain-on-failure or on-first-retry
         trace: 'on',//off,on,retain-on-failure or on-first-retry

@@ -1,0 +1,6 @@
+{
+    "fldUsername" : "#Email",
+    "fldPassword" : "#Password",
+    "btnSubmit" : "[type='submit']"
+
+}

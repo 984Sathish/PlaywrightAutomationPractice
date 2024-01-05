@@ -1,8 +1,14 @@
 const { test, expect } = require('@playwright/test')
 const moment = require('moment/moment')
-const { timeout } = require('../playwright.config')
+const { timeout, outputDir } = require('../playwright.config')
 const { link } = require('fs')
 const Tesseract = require('tesseract.js')
+import { error } from 'console'
+import XLSX from 'xlsx'
+const { convertArrayToCSV } = require('convert-array-to-csv');
+const fs = require('fs')
+ 
+
 
 test('Frame', async ({ page }) => {
 
@@ -22,7 +28,7 @@ test('Window Handling', async ({ browser }) => {
 
     await page.goto('https://www.globalsqa.com/demo-site/frames-and-windows/#Open%20New%20Window')
 
-    const [newPage] = await Promise.all([   
+    const [newPage] = await Promise.all([
 
         context.waitForEvent('page'),
         btnNewWinodw.click()
@@ -436,6 +442,7 @@ test('waits', async ({ page }) => {
 
     await page.waitForTimeout(3000)
 
+
 })
 
 test('File download', async ({ page }, testInfo) => {
@@ -448,7 +455,7 @@ test('File download', async ({ page }, testInfo) => {
     const [download] = await Promise.all([
         page.waitForEvent('download'),
         await page.getByRole('link', { name: 'Download' }).click(),
-        await page.waitForTimeout(20000)
+        await page.waitForTimeout(10000)
     ])
     const path = download.suggestedFilename()
     await download.saveAs(path)
@@ -459,6 +466,7 @@ test('File download', async ({ page }, testInfo) => {
 test('UI verification', async ({ page }) => {
 
     await page.goto('https://letcode.in/edit')
+
     expect(await page.isDisabled('#noEdit')).toBeTruthy()
 
     expect(await page.isEditable('#dontwrite')).toBeFalsy()
@@ -523,6 +531,54 @@ test.skip('Extract text from image', async ({ page }) => {
 
 })
 
+test('get excel data', async ({ page }) => {
 
+    function readExcel(path) {
+        const workbook = XLSX.readFile(path)
+        const sheet = workbook.Sheets[workbook.SheetNames[0]]
+        //const sheet = workbook.Sheets['CreateUser'] 
+        const jsonSheet = XLSX.utils.sheet_to_json(sheet)
+        console.log(jsonSheet)
+        return jsonSheet;
+    }
 
+    const filepath = 'dataFile.xlsx'
 
+    //general method
+    const exceldata = readFile(filepath)
+    console.log(exceldata)
+
+    //customized method
+    const excelfile = readExcel(filepath)
+
+    //print excel value
+    console.log(excelfile[0].Username)
+    console.log(excelfile[0].Password)
+})
+
+test('write csv', async()=> {
+    const dataArrays = [] 
+    const header = ['field', 'data'];
+
+    //add using push
+//   dataArrays.push(['username', "sathish"])
+
+    //add by whole data
+     dataArrays = [
+      ['username', "sathish"],
+      ['password', 'suresh'],
+    ];
+
+    const csvFromArray = convertArrayToCSV(dataArrays, {
+        header, 
+        separator: ':'
+    })
+
+     fs.writeFile('sample.csv', csvFromArray, err => {
+        if(err){
+            console.log(18, err)
+        }
+        console.log('csv file successfully added')
+    })
+     
+})

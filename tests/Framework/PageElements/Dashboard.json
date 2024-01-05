@@ -1,0 +1,5 @@
+{
+    "textHeader": "div.content-header h1",
+    "closedMenu": "[class='nav-item has-treeview'] [href='#'] p",
+    "openedMenu": "[class='nav-item has-treeview menu-is-opening menu-open'] [href*='Admin']"
+}

@@ -13,13 +13,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.7.1",
-    "allure-playwright": "^2.10.0"
+    "allure-playwright": "^2.10.0",
+    "playwright": "^1.40.1"
   },
   "dependencies": {
     "@cucumber/cucumber": "^9.5.1",
+    "@fast-csv/parse": "^4.3.6",
+    "convert-array-to-csv": "^2.0.0",
+    "csv-parse": "^5.5.3",
+    "fast-csv": "^4.3.6",
     "moment": "^2.29.4",
-    "tesseract.js": "^2.1.1"
+    "tesseract.js": "^2.1.1",
+    "xlsx": "^0.18.5"
   }
 }
