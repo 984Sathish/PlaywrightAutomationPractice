@@ -7,7 +7,7 @@ const { ProductPage } = require('./PageObjects/ProductPage')
 const filePath = 'dataFile.xlsx'
 const sheetName = 'CreateUser'
 
-test.only('Login test', async ({ browser }) => {
+test('Create Product', async ({ browser }) => {
 
     const utils = new Utils()
     //get excel data
@@ -47,5 +47,4 @@ test.only('Login test', async ({ browser }) => {
     await productPage.addProductInfo(page)
 
     expect(await productPage.saveDetails(page)).toContain('The new product has been added successfully.')
-
 })
