@@ -1,0 +1,4 @@
+1. install allure report  - npm i -D @playwright/test allure-playwright
+2. Run test with allure command - npx playwright test --reporter=line,allure-playwright
+3. Generate allure report - allure generate ./allure-results --clean
+4. Open allure report - allure open ./allure-report
