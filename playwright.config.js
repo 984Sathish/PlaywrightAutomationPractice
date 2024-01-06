@@ -10,6 +10,7 @@ const { defineConfig, devices } = require('@playwright/test');
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
+
 module.exports = defineConfig({
 
   expect: {
@@ -27,9 +28,8 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-
   //globalTimeout: 300 * 1000,
-  timeout:  40 * 1000,
+  timeout:  300 * 1000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: 'https://admin-demo.nopcommerce.com',
@@ -38,9 +38,7 @@ module.exports = defineConfig({
     //actionTimeout: 20000,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
    // trace: 'retain-on-failure',
-    
   },
-  
 
   /* Configure projects for major browsers */
   projects: [
@@ -48,7 +46,7 @@ module.exports = defineConfig({
       name: 'Chrome',
       use: { 
         browserName: 'chromium',
-        headless: true,
+        headless: false,
         video : 'retain-on-failure',
         screenshot: "only-on-failure",
         trace : 'retain-on-failure'

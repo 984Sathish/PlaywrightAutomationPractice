@@ -5,7 +5,6 @@ const config = {
   testDir: './tests',
   retries: 1, //number of retry execution when it fails
   Workers: 3,  //number of worker to run test in parallel(thread)
-
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

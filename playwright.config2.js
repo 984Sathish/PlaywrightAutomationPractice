@@ -2,7 +2,7 @@
 const config = {
   testDir: './tests',
   retries :1,
-  
+  Worker: 3,
   /* Maximum time one test can run for. */
   timeout: 40 * 1000,
   expect: {
@@ -15,7 +15,7 @@ const config = {
   use: {
 
     browserName : 'chromium',
-    headless : false,
+    headless : true,
     screenshot : 'retain-on-failure',
     video: 'retain-on-failure',
     trace : 'retain-on-failure',//off,on or retain-on-failure

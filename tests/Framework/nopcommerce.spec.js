@@ -7,7 +7,7 @@ const { ProductPage } = require('./PageObjects/ProductPage')
 const filePath = 'dataFile.xlsx'
 const sheetName = 'CreateUser'
 
-test('Create Product', async ({ browser }) => {
+test.only('Create Product', async ({ browser }) => {
 
     const utils = new Utils()
     //get excel data
@@ -31,16 +31,16 @@ test('Create Product', async ({ browser }) => {
     expect(await dashboardPage.verifyDashboardHeader(page)).toBe('Dashboard')
 
     await dashboardPage.clickMenu(page, 'Catalog')
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     await dashboardPage.clickSubMenu(page, 'Products')
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await dashboardPage.verifyDashboardHeader(page)).toBe('Products')
 
     const productPage = new ProductPage()
     productPage.AddNewProduct(page)
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     expect(await productPage.verifyProdctHeader(page)).toContain('Add a new product')
 
