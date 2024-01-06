@@ -4,10 +4,12 @@ const { Utils } = require('./Utils')
 const { LoginPage } = require('./PageObjects/LoginPage')
 const { DashboardPage } = require('./PageObjects/DashboardPage')
 const { ProductPage } = require('./PageObjects/ProductPage')
+const { describe } = require('node:test')
 const filePath = 'dataFile.xlsx'
 const sheetName = 'CreateUser'
 
-test.only('Create Product', async ({ browser }) => {
+
+test('Create Product', async ({ browser }) => {
 
     const utils = new Utils()
     //get excel data
