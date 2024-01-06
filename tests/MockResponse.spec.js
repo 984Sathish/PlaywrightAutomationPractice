@@ -22,7 +22,7 @@ test.beforeAll('Login API request', async ()=> {
 test('verify order id', async ({browser}) => {
 
     const context = await browser.newContext()
-    const page = await context.newPage()
+    const page = await context.newPage()    
 
     page.addInitScript(value => {
         
@@ -31,7 +31,7 @@ test('verify order id', async ({browser}) => {
 
     //go to application url
     await page.goto('https://rahulshettyacademy.com/client')
-
+    
 
     /*
     Note: Mock response life cycle or steps:
@@ -62,8 +62,8 @@ test('verify order id', async ({browser}) => {
     await page.locator('button[routerlink*="myorders"]').click()
 
     //wait from the reponse back.
-    //await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*')
-
+    // await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*')
+    await page.locator('div.mt-4').waitFor()
     const msgNoOrder = await page.locator('div.mt-4').textContent()
     console.log(msgNoOrder)
     expect(msgNoOrder.includes('No Orders')).toBeTruthy()

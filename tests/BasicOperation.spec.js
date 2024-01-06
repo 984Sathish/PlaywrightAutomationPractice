@@ -4,7 +4,7 @@ const { timeout, outputDir } = require('../playwright.config')
 const { link } = require('fs')
 const Tesseract = require('tesseract.js')
 import { error } from 'console'
-import XLSX from 'xlsx'
+import XLSX, {readFile} from 'xlsx'
 const { convertArrayToCSV } = require('convert-array-to-csv');
 const fs = require('fs')
  
@@ -557,7 +557,7 @@ test('get excel data', async ({ page }) => {
 })
 
 test('write csv', async()=> {
-    const dataArrays = [] 
+    let dataArrays = [] 
     const header = ['field', 'data'];
 
     //add using push
