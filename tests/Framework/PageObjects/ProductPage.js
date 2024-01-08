@@ -20,7 +20,8 @@ class ProductPage {
     async addProductInfo(page) {
         const fk = new FakerObject()
         //product name
-        await Utils.typeOnTextField(page, product.fldProdName, fk.prodName.toString())
+        const productName = fk.prodName.toString()
+        await Utils.typeOnTextField(page, product.fldProdName, productName)
         //product description
         await Utils.typeOnTextField(page, product.fldProdDesc, fk.prodDesc.toString())
         //category
@@ -53,6 +54,7 @@ class ProductPage {
         await Utils.slectDropdown(page, product.methodInventory, fk.inventory)
         //Upload photo
         //await page.setInputFiles(product.fileUpload, 'C:/Users/sathish.suresh/Documents/PlaywrightAutomation/demoImage.jpg')
+        return productName
     }
 
     async saveDetails(page) {
@@ -64,6 +66,45 @@ class ProductPage {
         await Utils.clickOnElement(page, product.btnAlertClose)
         //return success message
         return msg
+    }
+
+    async verifyProductInProdTable(page, prodName) {
+
+        await page.reload()
+        let found = false
+
+        //get pagination size
+        const size = await Utils.getSize(page, product.prodTabPagination)
+        console.log('size - ' + size)
+        const sizeOfPagination = size - 1
+        let i = 1
+        while (sizeOfPagination >= i) { 
+            if (!found) {
+                console.log("pagination: " + i)
+                await page.locator(product.prodTabPagination).nth(i).click()
+                await page.waitForTimeout(1000)
+                await page.locator("li[class='paginate_button page-item active']").waitFor()
+                const row = await Utils.getSize(page, product.productNameInTable)
+                console.log("row count - " + row)
+
+                //select and delete the product name
+                for (let j = 0; j < row; j++) {
+                    let productName = await page.locator(product.productNameInTable).nth(j).textContent()
+                    //console.log(productName)
+                    if (productName == prodName) {
+                        console.log(prodName + ' is successfully verified in table list')
+                        await page.locator(product.prodTabCbox).nth(j).check()
+                        await Utils.click(page, product.btnDeleteProduct)
+                        await Utils.click(page, product.btnYesDelete)
+                        found = true
+                        break
+                    }
+
+                }
+            }
+            i++
+        }
+    return found
     }
 }
 module.exports = { ProductPage }

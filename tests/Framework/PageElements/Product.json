@@ -21,5 +21,10 @@
     "fileUpload": "(//input[@title='file input'])[1]",
     "btnSave": "[name='save']",
     "msgSuccess": "[class*='alert-success']",
-    "btnAlertClose": "[data-dismiss='alert']"
+    "btnAlertClose": "[data-dismiss='alert']",
+    "productNameInTable" : "#products-grid tbody td:nth-child(3)",
+    "prodTabPagination" : "li[class*='paginate_button page-item']",
+    "prodTabCbox" : "#products-grid tbody td:nth-child(1) input",
+    "btnDeleteProduct" : "button#delete-selected",
+    "btnYesDelete" : "#delete-selected-action-confirmation-submit-button"
 }

@@ -16,12 +16,11 @@ class Utils {
     let text
     await page.waitForLoadState()
     const element = await page.locator(selector)
-    //await element.last().waitFor()
-    console.log(await element.count())
+    console.log("Element count: "+await element.count())
     for (let i = 0; i < await element.count(); i++) {
       text = await element.nth(i).textContent()
       text = text.trim()
-      console.log(text)
+      console.log("Menu Name: "+text)
       if (text == menuTitle) {
         await element.nth(i).click({ force: true })
         break
@@ -100,6 +99,13 @@ class Utils {
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.fill(text, { force: true })
+  }
+
+  static async getSize(page, selector){
+    const element = page.locator(selector).last()
+    await element.scrollIntoViewIfNeeded()
+    await element.waitFor()
+    return await  page.locator(selector).count()
   }
 
 }
