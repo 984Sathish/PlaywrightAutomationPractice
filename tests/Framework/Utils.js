@@ -34,14 +34,14 @@ class Utils {
 
   static async clickOnElement(page, selector) {
     await page.waitForLoadState()
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.click({ force: true })
   }
 
   static async getText(page, selector) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     const text = await element.textContent()
@@ -49,14 +49,14 @@ class Utils {
   }
 
   static async typeOnTextField(page, selector, text) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.fill(text, { force: true })
   }
 
   static async selectvalue(page, selector, text) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.click({ force: true })
     await element.fill(text, { force: true })
@@ -67,47 +67,57 @@ class Utils {
   }
 
   static async clickCheckBox(page, selector) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.check({ force: true })
   }
 
   static async type(page, selector, text) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.fill(text)
   }
 
   static async click(page, selector) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.click()
   }
 
   static async slectDropdown(page, selector, text) {
-    const element = page.locator(selector)
+    const element = await page.locator(selector)
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.selectOption(text, { force: true })
   }
 
   static async typeOnFirstTextField(page, selector, text) {
-    const element = page.locator(selector).first()
+    const element = await page.locator(selector).first()
     await element.scrollIntoViewIfNeeded()
     await element.waitFor()
     await element.fill(text, { force: true })
   }
 
   static async getSize(page, selector){
-    const element = page.locator(selector).last()
-    await element.scrollIntoViewIfNeeded()
+    const element = await page.locator(selector).last()
     await element.waitFor()
+    await element.scrollIntoViewIfNeeded()
     return await  page.locator(selector).count()
   }
 
+  static async CheckElementIsHidden(page, selector){
+    return await page.locator(selector).isHidden()
+  }
+
+  static async typeOnLastTextField(page, selector, text) {
+    const element = await page.locator(selector).last()
+    await element.scrollIntoViewIfNeeded()
+    await element.waitFor()
+    await element.fill(text, { force: true })
+  }
 }
 
 module.exports = { Utils }

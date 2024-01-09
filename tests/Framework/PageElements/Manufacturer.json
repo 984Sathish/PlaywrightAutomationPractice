@@ -1,0 +1,12 @@
+{
+    "fldManufactName": "#Name",
+    "fldDisplayOrder": "#manufacturer-display [class='k-formatted-value k-input']",
+    "cardManufactInfo" : "//div[@id='manufacturer-info' and @class='card card-secondary card-outline collapsed-card']",
+    "cardManufactDisplay" : "//div[@id='manufacturer-display' and @class='card card-secondary card-outline collapsed-card']",
+    "manufactTabPagination" : "li[class*='paginate_button page-item']",
+    "manufactNameInTable" : "#manufacturers-grid tbody td:nth-child(2)",
+    "manufactTabCbox" : "#manufacturers-grid tbody td:nth-child(1) input",
+    "btnDeleteManufact" : "button#delete-selected",
+    "btnYesDelete" : "#delete-selected-action-confirmation-submit-button"
+    
+}

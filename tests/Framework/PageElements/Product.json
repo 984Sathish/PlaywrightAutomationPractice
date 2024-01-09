@@ -26,5 +26,9 @@
     "prodTabPagination" : "li[class*='paginate_button page-item']",
     "prodTabCbox" : "#products-grid tbody td:nth-child(1) input",
     "btnDeleteProduct" : "button#delete-selected",
-    "btnYesDelete" : "#delete-selected-action-confirmation-submit-button"
+    "btnYesDelete" : "#delete-selected-action-confirmation-submit-button",
+    "cardProdInfo" : "//div[@id='product-info' and @class='card card-secondary card-outline collapsed-card']",
+    "cardPrice" : "//div[@id='product-price' and @class='card card-secondary card-outline collapsed-card']",
+    "cardShipping" : "//div[@id='product-shipping' and @class='card card-secondary card-outline collapsed-card']",
+    "cardInventory" : "//div[@id='product-inventory' and @class='card card-secondary card-outline collapsed-card']"
 }
